@@ -1,0 +1,63 @@
+﻿<form name="form">
+
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-5">
+            <div id="msg" data-ng-model="Message" style="color:red">{{Message}}</div>
+        </div>
+    </div>
+
+    <h1>Create Questions</h1>
+    <h2>Question Type</h2>
+   
+    <label ng-repeat="type in vm.questionTypes">
+        <input name="questionType"
+               type="radio"
+               value="{{type}}"
+               ng-model="vm.question.questionType" />
+        {{type}}
+
+    </label>
+    <h2>Question Text?</h2>
+
+    <div>
+        <textarea ng-model="vm.question.text"
+                  cols="80" rows="5" type="text" required></textarea>
+        <p ng-show="form.vm.question.text.$invalid && form.vm.question.text.$dirty"> Text is required </p>
+    </div>
+
+    <div ng-if="vm.question.questionType == 'mcq'">
+        <fieldset data-ng-repeat="choice in choices">
+            <input type="text" ng-model="choice.name" name="" placeholder="Enter Question Value" required>
+            <button class="remove" ng-show="$last" ng-click="removeChoice()">-</button>
+        </fieldset>
+        <button class="addfields" ng-click="addNewChoice()">Add Question Value</button>
+
+      
+    </div>
+
+    <div ng-if="vm.question.questionType == 'mcq'">
+        <fieldset data-ng-repeat="choice in anschoices">
+            <input type="text" ng-model="choice.name" name="" placeholder="Enter Answer Value" required>
+            <button class="remove" ng-show="$last" ng-click="removeansChoice()">-</button>
+        </fieldset>
+        <button class="addfields" ng-click="addNewansChoice()">Add Answer Value</button>
+
+
+    </div>
+    <div  ng-if="vm.question.questionType == 'numeric'">
+        {{mcq()}}
+        <input type="number" ng-model="vm.question.answer" placeholder="Please enter answer" required />
+    </div>
+    <div ng-if="vm.question.questionType == 'text'">
+        {{mcq()}}
+        <input type="text" ng-model="vm.question.answer" placeholder="Please enter answer" required/>
+    </div>
+    <div ng-if="vm.question.questionType == 'boolean'">
+         {{mcq()}}
+        <input type="radio" value="True" name="quest" ng-model="vm.question.answer">True <br />
+        <input type="radio" value="False" name="quest" ng-model="vm.question.answer">False
+    </div>
+   
+
+    <button ng-disabled="form.$invalid" class="btn btn-info btn-success" ng-click="vm.addQuestion(vm.question,choices,anschoices)">Add Question</button>
+</form>

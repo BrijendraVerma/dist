@@ -1,0 +1,13 @@
+
+  <div>
+      <h2>All Questions</h2> <a href="#" ng-click="vm.showQuestCreateWindow($event);">Creaet New Question</a>
+      <ol>
+          <li ng-repeat="question in vm.questions track by $index">
+              {{question.text}}
+          </li>
+      </ol>
+
+
+  
+   
+  </div>

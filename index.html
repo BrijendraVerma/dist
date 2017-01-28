@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+  <head>
+      
+     
+      <!--<link href="css/bootstrap.min.css" rel="stylesheet" />-->
+
+      <link href="css/bootstrap.min.css" rel="stylesheet" />
+      <script src="scripts/jquery.js"></script>
+      <script src="scripts/bootstrap.min.js"></script>
+      <script src="scripts/angular.js"></script>
+      <script src="scripts/angular-route.js"></script>
+      <script src="/scripts/angular-ui-router.min.js"></script>
+
+      <script src="/scripts/timer/angular-timer-min.js"></script>
+      <script src="scripts/timer/moment-min.js"></script>
+      <script src="scripts/timer/locales.min.js"></script>
+      <script src="scripts/timer/humanize-duration.js"></script>
+      <script src="/horizon/horizon.js"></script>
+
+      <link href="scripts/ng-dialog/css/ngDialog-theme-default.css" rel="stylesheet" />
+      <link href="scripts/ng-dialog/css/ngDialog-theme-plain.css" rel="stylesheet" />
+      <link href="scripts/ng-dialog/css/ngDialog.css" rel="stylesheet" />
+      <script src="scripts/ng-dialog/ngDialog.js"></script>
+
+      <script>
+          var horizon = Horizon();
+          horizon.onReady(function () {
+              document.querySelector('h1').innerHTML = ''
+          });
+          horizon.connect();
+      </script>
+
+    <link rel="stylesheet" href="style.css" />
+   <style>
+
+        .ngdialog-content{
+          height: 900px !important;
+          width: 99% !important;
+        }
+    
+       .ngdialog.ngdialog-theme-plain {
+        /*padding-bottom: 100px !important;*/
+        padding-top: 1% !important;
+    }
+   </style>
+  </head>
+
+  <body>
+      <br />
+      <h1 class="hidden">   Welcome To TekAcademy Labs</h1>
+      <h6 class="fa fa-google-plus fa-2x" ng-show="isloggedIn"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{message}} {{loginState.user.name}}</h6>
+    <div class="container">
+        <div class="panel panel-primary"> 
+            <div ng-if="loginState.isLoggedIn">
+                <a href="#" ui-sref="index">Log Out</a>
+            </div>
+            <div ng-if="loginState.role=='admin'">
+                <a  class="btn btn-info" href="#" ui-sref="user">Create User</a>
+                <a  class="btn btn-info" href="#" ui-sref="questions">Questions</a>
+                <a  class="btn btn-info" href="#" ui-sref="createTest">Create Test</a>
+                <a  class="btn btn-info" href="#" ui-sref="showTests">Show Tests</a>
+                <a  class="btn btn-info" href="#" ui-sref="assignTests">Assigned Tests</a>
+                <a  class="btn btn-info" href="#" ui-sref="dashboard">Dashboard</a>
+                <a  class="btn btn-info" href="#" ui-sref="results">Results Testwise</a>
+                <a  class="btn btn-info" href="#" ui-sref="allresults">All Results</a>
+            </div>
+            <br />
+            <br />
+            <!--<div ng-view>
+
+        </div>-->
+
+            <div>
+                <div ui-view></div>
+            </div>
+            </div>
+        </div>
+
+      <script src="app.js"></script>
+      <script src="services/appservice.js"></script>
+      <script src="services/loginService.js"></script>
+      <script src="users/controllers/login-controller.js"></script>
+      <script src="admin/controllers/questions-controller.js"></script>
+      <script src="admin/controllers/tests-controller.js"></script>
+      <script src="testengine/controllers/testengine-controller.js"></script>
+      <script src="services/dashboardservice.js"></script>
+      <script src="users/controllers/dashboard-controller.js"></script>
+      <script src="services/assignedTestService.js"></script>      
+      <script src="admin/controllers/assigned-test-controller.js"></script>
+      <script src="services/ResultService.js"></script>
+      <script src="services/userMaster.js"></script>
+      <script src="admin/controllers/results-controller.js"></script>
+      <script src="users/controllers/user-controller.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,26 @@
+﻿<div class="row" >
+    <span ng-if="error.length>0" style="color:red;">{{error}}</span>
+
+    <form name="frmLogin" novalidate>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-5">
+                    <input type="text" name="userName" ng-required="true" ng-model="user.userName" class="form-control" placeholder="Username">
+                    <span style="color:red" ng-show="(submitted && frmLogin.userName.$invalid) || (frmLogin.userName.$dirty && frmLogin.userName.$invalid)">
+                        <span ng-show="frmLogin.userName.$error.required">UserName is required.</span>
+                    </span>
+                </div>
+                <div class="col-md-5">
+                    <input type="password" name="password" ng-required="true" ng-model="user.password" class="form-control" placeholder="Password">
+                    <span style="color:red" ng-show="submitted && frmLogin.password.$invalid">
+                        <span ng-show="frmLogin.password.$error.required">Password is required.</span>
+                    </span>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-sm btn-default" ng-click="doLogin(frmLogin.$valid,user)">Login</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

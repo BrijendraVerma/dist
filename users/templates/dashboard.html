@@ -1,0 +1,37 @@
+﻿
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-5">
+        <div id="msg" data-ng-model="Message" style="color:red">{{Message}}</div>
+    </div>
+</div>
+
+
+<div ng-if="loginState.role!='admin'">
+    <ol>
+        <li ng-repeat="test in assignedTests">
+
+            <span>{{test.testName}}</span> <span ng-if="loginState.role!='admin'"><input type="button" class="btn btn-warning btn-sm" value="Start Test" ng-click="startTest(test.testId)" /></span>
+            <span></span> <span ng-if="loginState.role=='admin'"><input type="button" class="btn btn-warning btn-sm" value="Calculate" ng-click="calculateTestResults(test.testId)" /></span>
+            <br />
+
+        </li>
+    </ol>
+    <br />
+</div>
+<div ng-if="loginState.role=='admin'">
+    <ol>
+        <li ng-repeat="test in AllTests">
+            <span></span> <span ng-if="test.iscalculated==false"><input type="button" class="btn btn-warning btn-sm" value="Calculate" ng-click="calculateTestResults(test.id)" /></span>
+            <span></span> <span ng-if="test.iscalculated==true"><input type="button" class="btn btn-warning btn-sm" value="Result" ng-click="showrall()" /></span>
+            <br />
+
+        </li>
+    </ol>
+    <br />
+</div>
+
+<div ng-if="loginState.role=='admin'" ng-hide="true">
+    <input type="button" class="btn btn-success btn-lg" ng-click="showresult()" value="Show Result Test Wise" />
+    
+     <input type="button" class="btn btn-info btn-lg" ng-click="showrall()" value="Show Result All Test" />
+</div>

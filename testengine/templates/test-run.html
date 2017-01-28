@@ -1,0 +1,57 @@
+<div>
+    {{countdown}}
+    <timer interval="1000"  countdown="countdown" class="form-control">{{hours}}:{{minutes}}:{{seconds}}</timer>
+   
+</div>
+<h2>Test in progress: {{ vm.test.testName}}  </h2>
+
+<h2>Questions</h2>
+<ul>
+    {{vm.currentQId + 1}} )
+    <li > <!--ng-repeat="question in vm.test.questions"-->
+        
+        {{ vm.question.text }}
+        {{ vm.question.questionType}}
+        Choices:
+        <div>
+            <div ng-if="vm.question.questionType == 'mcq'">
+                <div ng-repeat="selected in vm.question.choice track by $index">
+                    <input type="checkbox"
+                           value="{{selected}}"
+                           ng-checked="vm.useranswers.selection.indexOf(selected) > -1"
+                           ng-click="vm.toggleSelection(selected)" /> {{selected}} <br />
+                </div>
+                
+            </div>
+        </div>
+        <div ng-if="vm.question.questionType == 'numeric'">
+            <input type="number" id="num" ng-model="vm.useranswers.selection" />
+        </div>
+        <div ng-if="vm.question.questionType == 'boolean'">
+            <input type="radio" value="True" name="quest" ng-model="vm.useranswers.selection">True <br />
+            <input type="radio" value="False" name="quest" ng-model="vm.useranswers.selection">False
+        </div>
+        <div ng-if="vm.question.questionType == 'text'">
+            <input type="text" id="txt" ng-model="vm.useranswers.selection" />
+        </div>
+        <div>
+            <button class="btn btn-success btn-sm" ng-click="vm.GoToPrevQuestion(vm.useranswers, vm.question.questionType, vm.question.id,loginState.userId)" ng-show="vm.currentQId > 0">Previous</button>
+            <button class="btn btn-primary btn-sm" ng-click="vm.GoToNextQuestion(vm.useranswers, vm.question.questionType, vm.question.id,loginState.userId)" ng-show="vm.currentQId <= (vm.totalQuestCount-1)">Next</button>
+        </div>
+           </li>
+    
+        </ul>
+
+<div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <button class="btn btn-warning"  ng-click="vm.submit()">Submit</button>
+    
+  
+</div>
+

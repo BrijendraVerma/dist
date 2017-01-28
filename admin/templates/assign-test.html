@@ -1,0 +1,20 @@
+﻿
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-5">
+        <div id="msg" data-ng-model="Message" style="color:red">{{Message}}</div>
+    </div>
+</div>
+
+
+<div>
+    <select ng-model="assignedTest" ng-change="getSelectedUsersforTest(assignedTest)">
+        <option ng-repeat="test in tests" value="{{test.id}}">{{test.testName}}</option>
+    </select>
+    <input type="button" class="btn btn-info btn-sm" ng-click="assignTest()" value="Assign Test"></div>
+<div>
+    <ul>
+        <li ng-repeat="user in users">
+            <input type="checkbox" ng-click="toggleSelection(user.id)" ng-checked="userSelection.indexOf(user.id) > -1" /> {{user.name}}
+        </li>
+    </ul>
+</div>

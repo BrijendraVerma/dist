@@ -1,0 +1,28 @@
+<h2>All Tests</h2>
+
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-5">
+        <div id="msg" data-ng-model="Message" style="color:red">{{Message}}</div>
+    </div>
+</div>
+
+
+<ol>
+    <li ng-repeat="t in vm.tests">
+        <a href="#/testengine/run/{{t.id}}">{{t.testName}}</a>
+        <button class="btn btn-warning btn-sm" ng-click="vm.editTest(t.id)">Edit</button>
+        <button class="btn btn-info btn-sm" ng-click="vm.saveTest(t)">Save</button>
+        <button class="btn btn-success  btn-sm" ng-click="vm.deleteTest(t.id)">Delete</button>
+    </li>
+</ol>
+
+<div ng-show="isShow">
+    <ol>
+        <li ng-repeat="q in vm.questions">
+            <input type="checkbox"
+                   ng-model="q.checked" />
+            {{q.text}}
+
+        </li>
+    </ol>
+</div>
